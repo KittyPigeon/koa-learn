@@ -1,5 +1,5 @@
 const router = require('koa-router')()
-
+const UserController = require('../controllers/user')
 router.prefix('/users')
 
 router.get('/', function (ctx, next) {
@@ -9,5 +9,12 @@ router.get('/', function (ctx, next) {
 router.get('/bar', function (ctx, next) {
   ctx.body = 'this is a users/bar response'
 })
-
+router.get(
+  '/getUserDetail/:id',
+  UserController.detail
+)
+router.get('/userList',UserController.list);
+router.post('/login',function(ctx,next){
+  ctx.body='登录';
+})
 module.exports = router

@@ -10,8 +10,8 @@ const Sequelize = db.sequelize;
 // 引入上一步的文章数据表模型文件
 const User = Sequelize.import('../schema/user');
 // 自动创建表
-Article.sync({force: false});
-class ArticleModel {
+User.sync({force: false});
+class UserModel {
     /**
      * 创建文章模型
      * @param data
@@ -34,6 +34,15 @@ class ArticleModel {
                 id,
             },
         })
+    }
+
+    /**
+     * 查询所有用户
+     * 
+     * @returns {Promise<Model>}
+     */
+    static async getAllUser(){
+        return await User.findAll()
     }
 }
 module.exports = UserModel

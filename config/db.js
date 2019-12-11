@@ -20,7 +20,14 @@ const sequelize = new Sequelize('xcb_shop', 'root', '123456', {
     },
     timezone: '+08:00' //东八时区
 });
-
+sequelize
+  .authenticate()
+  .then(() => {
+    console.log('Connection has been established successfully.');
+  })
+  .catch(err => {
+    console.error('Unable to connect to the database:', err);
+  });
 module.exports = {
     sequelize
 }

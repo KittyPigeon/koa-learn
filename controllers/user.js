@@ -21,6 +21,7 @@ class userController {
                 // 返回新创建的用户信息
                 const data = await UserModel.getUserDetail(ret.id);
                 ctx.response.status = 200;
+                console.log(data);
                 ctx.body = {
                     code: 200,
                     msg: '创建成功',
@@ -50,7 +51,6 @@ class userController {
      */
     static async detail(ctx) {
         let id = ctx.params.id;
-
         if (id) {
             try {
                 // 查询文章详情模型
@@ -74,6 +74,30 @@ class userController {
             ctx.body = {
                 code: 416,
                 msg: '用户ID必须传'
+            }
+        }
+    }
+
+    /**
+     * 用户列表
+     * @param ctx
+     * @returns {Promise.<void>}
+     */
+    static async list(ctx){
+        try{
+            let data =await UserModel.getAllUser();
+            ctx.response.status=200;
+            ctx.body={
+                code:200,
+                msg:'查询成功',
+                data
+            }
+        }catch(err){
+            ctx.response.status = 412;
+            ctx.body = {
+                code: 412,
+                msg: '查询失败',
+                data
             }
         }
     }
