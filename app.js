@@ -8,7 +8,7 @@ const logger = require('koa-logger')
 var cors = require('koa2-cors');
 const index = require('./routes/index')
 const users = require('./routes/users')
-
+console.log('测试')
 // error handler
 onerror(app)
 
